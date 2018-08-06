@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# contributor: dlw
+# name: dict_key_value
+# key: dkv->
+# group: general
+# NOTE:
+# --
+${1:key}: ${2:value},

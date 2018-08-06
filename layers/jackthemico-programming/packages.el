@@ -1,0 +1,44 @@
+(setq jackthemico-programming-packages '(
+                                         yasnippet
+                                         evil
+                                         visual-regexp
+                                         visual-regexp-steroids
+                                         ))
+
+(defun jackthemico-programming/post-init-yasnippet ()
+  (progn
+    (set-face-background 'secondary-selection "gray")
+    (setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
+    (mapc #'(lambda (hook) (remove-hook hook 'spacemacs/load-yasnippet)) '(prog-mode-hook
+                                                                           org-mode-hook
+                                                                           markdown-mode-hook))
+
+    (spacemacs/add-to-hooks 'jackthemico/load-yasnippet '(prog-mode-hook
+                                                            markdown-mode-hook
+                                                            org-mode-hook))
+    ))
+
+(defun jackthemico-programming/post-init-evil ()
+  (progn
+    (define-key evil-insert-state-map "\C-j" 'next-line)
+    (define-key evil-insert-state-map "\C-k" 'previous-line)
+    (define-key evil-insert-state-map "\C-h" 'backward-char)
+    (define-key evil-insert-state-map "\C-l" 'forward-char)
+    (define-key evil-insert-state-map "\C-f" 'forward-word)
+    (define-key evil-insert-state-map "\C-b" 'backward-word)
+    (define-key evil-ex-completion-map "\C-a" 'move-beginning-of-line)
+    (define-key evil-ex-completion-map "\C-k" 'kill-line)
+    )
+  )
+
+(defun jackthemico-programming/init-visual-regexp ()
+  (use-package visual-regexp
+    :commands (vr/replace vr/query-replace)))
+
+(defun jackthemico-programming/init-visual-regexp-steroids ()
+  (use-package visual-regexp-steroids
+    :commands (vr/select-replace vr/select-query-replace)
+    :init
+    (progn
+      (define-key global-map (kbd "C-c r") 'vr/replace)
+      (define-key global-map (kbd "C-c q") 'vr/query-replace))))
