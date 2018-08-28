@@ -3,6 +3,7 @@
                                          evil
                                          visual-regexp
                                          visual-regexp-steroids
+                                         (python :location built-in)
                                          ))
 
 (defun jackthemico-programming/post-init-yasnippet ()
@@ -17,6 +18,13 @@
                                                             markdown-mode-hook
                                                             org-mode-hook))
     ))
+
+(defun jackthemico-programming/post-init-python ()
+  (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  ;; if you use pyton3, then you could comment the following line
+  (setq python-shell-interpreter "ipython3")
+  (setq python-shell-interpreter-args "--simple-prompt -i")
+  )
 
 (defun jackthemico-programming/post-init-evil ()
   (progn

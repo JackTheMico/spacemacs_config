@@ -2,4 +2,5 @@
 
 (configuration-layer/declare-layers '(
                                       jackthemico-programming
+                                      jackthemico-org
                                       ))
