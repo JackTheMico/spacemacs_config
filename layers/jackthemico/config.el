@@ -11,4 +11,4 @@
 (setq-default
  org-agenda-dir "~/org-notes"
  deft-dir "~/org-notes"
- blog-admin-dir "~/dlwxxxdlw@163.com")
+ blog-admin-dir "~/jackthemico.com")
