@@ -1,9 +1,11 @@
 (setq jackthemico-programming-packages '(
                                          yasnippet
+                                         helm-c-yasnippet
                                          evil
                                          visual-regexp
                                          visual-regexp-steroids
                                          (python :location built-in)
+                                         company
                                          ))
 
 (defun jackthemico-programming/post-init-yasnippet ()
@@ -12,17 +14,25 @@
     (setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
     (mapc #'(lambda (hook) (remove-hook hook 'spacemacs/load-yasnippet)) '(prog-mode-hook
                                                                            org-mode-hook
-                                                                           markdown-mode-hook))
+                                                                           markdown-mode-hook
+                                                                           python-mode-hook))
 
     (spacemacs/add-to-hooks 'jackthemico/load-yasnippet '(prog-mode-hook
-                                                            markdown-mode-hook
-                                                            org-mode-hook))
-    ))
+                                                          markdown-mode-hook
+                                                          org-mode-hook
+                                                          python-mode-hook))
+    )
+  )
+
+(defun jackthemico-programming/post-init-helm-c-yasnippet ()
+  (use-package helm-c-yasnippet)
+  )
 
 (defun jackthemico-programming/post-init-python ()
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  (add-hook 'python-mode-hook 'spacemacs/toggle-relative-line-numbers-on)
   ;; if you use pyton3, then you could comment the following line
-  (setq python-shell-interpreter "ipython3")
+  (setq python-shell-interpreter "ipython2")
   (setq python-shell-interpreter-args "--simple-prompt -i")
   )
 
@@ -50,3 +60,19 @@
     (progn
       (define-key global-map (kbd "C-c r") 'vr/replace)
       (define-key global-map (kbd "C-c q") 'vr/query-replace))))
+
+(defun jackthemico-programming/post-init-company ()
+  (defun python/init-company-jedi ()
+    (use-package company-jedi
+      :if (configuration-layer/package-usedp 'company)
+      :defer t
+      :init
+      (push 'company-jedi company-backends-python-mode)))
+  (progn
+    (setq company-minimum-prefix-length 1
+          company-idle-delay 0.08)
+
+    (when (configuration-layer/package-usedp 'company)
+      (spacemacs|add-company-backends :modes shell-script-mode makefile-bsdmake-mode sh-mode lua-mode nxml-mode conf-unix-mode json-mode graphviz-dot-mode))
+    )
+  )

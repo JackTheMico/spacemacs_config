@@ -1,5 +1,6 @@
 (define-key global-map (kbd "C-c y") 'youdao-dictionary-search-at-point+)
 (define-key global-map (kbd "C-c s") 'youdao-dictionary-search)
+(define-key global-map (kbd "C-c t") 'mac-toggle-tab-bar)
 (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+)
 (spacemacs/set-leader-keys "oi" 'youdao-dictionary-search-from-input)
 

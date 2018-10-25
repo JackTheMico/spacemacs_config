@@ -33,8 +33,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(javascript
-     nginx
+   '(csv
+     javascript
      html
      markdown
      sql
@@ -48,6 +48,10 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      ;; helm
      ivy
+     dash
+     ;; (dash :variables
+     ;;       helm-dash-docsets-path "/Users/admin/Library/Application Support/Dash/DocSets"
+     ;;       helm-dash-docset-newpath "/Users/admin/Library/Application Support/Dash/DocSets")
      ;; auto-completion
      ;; better-defaults
      emacs-lisp
@@ -58,6 +62,7 @@ This function should only modify configuration layer settings."
           magit-revert-buffers 'silent
           magit-refs-show-commit-count 'all
           magit-revision-show-gravatars nil
+          magit-repository-directories nil
           )
      (auto-completion :variables auto-completion-enable-sort-by-usage t
                       auto-completion-enable-snippets-in-popup t
@@ -66,6 +71,8 @@ This function should only modify configuration layer settings."
                       auto-completion-private-snippets-directory "~/.spacemacs.d/snippets"
                       :disabled-for org markdown)
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
+     (osx :variables osx-dictionary-dictionary-choice "Simplified Chinese - English"
+          osx-command-as 'super)
      restclient
      ;; (shell :variables shell-default-shell 'eshell)
      ;; markdown
@@ -79,8 +86,8 @@ This function should only modify configuration layer settings."
             shell-default-height 30
             shell-default-position 'bottom)
      jackthemico
-     ;; spell-checking
-     ;; syntax-checking
+     spell-checking
+     syntax-checking
      ;; version-control
      )
 
@@ -198,8 +205,8 @@ It should only modify the values of Spacemacs settings."
    ;; `recents' `bookmarks' `projects' `agenda' `todos'.
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
-   dotspacemacs-startup-lists '((recents . 5)
-                                (projects . 7))
+   dotspacemacs-startup-lists '((recents . 10)
+                                (projects . 10))
 
    ;; True if the home buffer should respond to resize events. (default t)
    dotspacemacs-startup-buffer-responsive t
@@ -215,7 +222,12 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light)
+                         spacemacs-light
+                         hc-zenburn
+                         sanityinc-solarized-dark
+                         zonokai-red
+                         zenburn
+                         )
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `vim-powerline' and `vanilla'. The first three
@@ -233,7 +245,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Variable"
-                               :size 15
+                               :size 13
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -475,6 +487,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
           ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
   (setq tramp-ssh-controlmaster-options
         "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+  (setq counsel-dash-browser-func 'eww)
   )
 
 (defun dotspacemacs/user-load ()
@@ -506,7 +519,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (youdao-dictionary chinese-word-at-point yasnippet-snippets yapfify xterm-color ws-butler winum wgrep web-mode web-beautify volatile-highlights visual-regexp-steroids visual-regexp vi-tilde-fringe uuidgen toc-org tagedit symon string-inflection sql-indent spaceline-all-the-icons spaceline powerline smex smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs request rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements persp-mode password-generator paradox spinner overseer orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-bullets org-brain open-junk-file ob-restclient ob-http nginx-mode neotree nameless multi-term move-text mmm-mode markdown-toc markdown-mode magit-svn magit-gitflow macrostep lorem-ipsum livid-mode skewer-mode live-py-mode link-hint json-navigator hierarchy json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc ivy-yasnippet ivy-xref ivy-purpose window-purpose ivy-hydra indent-guide importmagic epc concurrent deferred impatient-mode simple-httpd imenu-list ibuffer-projectile hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-make helm helm-core haml-mode google-translate golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit ghub treepy graphql with-editor evil-lisp-state evil-lion evil-indent-plus evil-iedit-state iedit evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens smartparens paredit evil-args evil-anzu anzu eval-sexp-fu highlight eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump doom-modeline eldoc-eval shrink-path all-the-icons memoize define-word cython-mode counsel-projectile projectile pkg-info epl counsel-css counsel swiper ivy company-web web-completion-data company-tern dash-functional tern company-statistics company-restclient restclient know-your-http-well company-quickhelp pos-tip company-anaconda company column-enforce-mode clean-aindent-mode centered-cursor-mode blog-admin names ctable auto-yasnippet yasnippet auto-highlight-symbol auto-complete popup auto-compile packed anaconda-mode pythonic f dash s aggressive-indent ace-window ace-link avy which-key use-package pcre2el org-plus-contrib hydra font-lock+ evil goto-chg undo-tree dotenv-mode diminish bind-map bind-key async))))
+    (sql-indent youdao-dictionary yasnippet-snippets yapfify xterm-color ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights visual-regexp-steroids vi-tilde-fringe uuidgen use-package toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shell-pop scss-mode sass-mode reveal-in-osx-finder restart-emacs request rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file ob-restclient ob-http neotree nameless multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode link-hint launchctl json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide importmagic impatient-mode ibuffer-projectile hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flyspell-correct-ivy flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish dash-at-point cython-mode csv-mode counsel-projectile counsel-dash counsel-css company-web company-tern company-statistics company-restclient company-quickhelp company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode blog-admin auto-yasnippet auto-highlight-symbol auto-dictionary auto-complete auto-compile aggressive-indent ace-window ace-link))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

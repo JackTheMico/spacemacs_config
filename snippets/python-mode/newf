@@ -12,7 +12,7 @@
 
     Description:      $2
 
-    Author:           dengliangwen@bbdservice.com
+    Author:           liangwen.deng@kankanai.com.cn
 
     Date:             ${3:$(format-time-string "%Y-%m-%d-%H:%M:%S")}
 
