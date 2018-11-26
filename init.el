@@ -86,8 +86,10 @@ This function should only modify configuration layer settings."
             shell-default-height 30
             shell-default-position 'bottom)
      jackthemico
-     spell-checking
-     syntax-checking
+     ;; spell-checking
+     ;; syntax-checking
+     (syntax-checking :variables
+                      syntax-checking-enable-by-default nil)
      ;; version-control
      )
 
@@ -221,11 +223,11 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(
+                         misterioso
+                         spacemacs-dark
                          spacemacs-light
-                         hc-zenburn
                          sanityinc-solarized-dark
-                         zenburn
                          )
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
@@ -518,7 +520,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (zenburn-theme hc-zenburn-theme color-theme-sanityinc-solarized youdao-dictionary yasnippet-snippets yapfify xterm-color ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights visual-regexp-steroids vi-tilde-fringe uuidgen use-package toc-org tagedit symon string-inflection sql-indent spaceline-all-the-icons smex smeargle slim-mode shell-pop scss-mode sass-mode reveal-in-osx-finder restart-emacs request rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file ob-restclient ob-http neotree nameless multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode link-hint launchctl json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide importmagic impatient-mode ibuffer-projectile hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flyspell-correct-ivy flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish dash-at-point cython-mode csv-mode counsel-projectile counsel-dash counsel-css company-web company-tern company-statistics company-restclient company-quickhelp company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode blog-admin auto-yasnippet auto-highlight-symbol auto-dictionary auto-complete auto-compile aggressive-indent ace-window ace-link))))
+    (web-mode hl-todo git-link doom-modeline anaconda-mode projectile magit ghub with-editor youdao-dictionary yasnippet-snippets yapfify xterm-color ws-butler winum which-key wgrep web-beautify volatile-highlights visual-regexp-steroids vi-tilde-fringe uuidgen use-package treepy toc-org tagedit symon string-inflection sql-indent spaceline-all-the-icons smex smeargle slim-mode shrink-path shell-pop scss-mode sass-mode reveal-in-osx-finder restart-emacs request rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file ob-restclient ob-http neotree nameless multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode link-hint launchctl json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide importmagic impatient-mode ibuffer-projectile hungry-delete highlight-parentheses highlight-numbers highlight-indentation helm-make graphql google-translate golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-commit gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav eldoc-eval editorconfig dumb-jump dotenv-mode diminish dash-at-point cython-mode csv-mode counsel-projectile counsel-dash counsel-css company-web company-tern company-statistics company-restclient company-quickhelp company-anaconda column-enforce-mode color-theme-sanityinc-solarized clean-aindent-mode centered-cursor-mode blog-admin auto-yasnippet auto-highlight-symbol auto-complete auto-compile aggressive-indent ace-window ace-link))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
