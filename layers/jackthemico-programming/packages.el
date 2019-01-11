@@ -22,8 +22,8 @@
 (defun jackthemico-programming/post-init-python ()
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   ;; if you use pyton3, then you could comment the following line
-  (setq python-shell-interpreter "ipython3")
-  (setq python-shell-interpreter-args "--simple-prompt -i")
+  (setq python-shell-interpreter "python3")
+  ;; (setq python-shell-interpreter-args "--simple-prompt -i")
   )
 
 (defun jackthemico-programming/post-init-evil ()
