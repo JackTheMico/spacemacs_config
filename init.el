@@ -44,8 +44,8 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; helm
-     ivy
+     helm
+     ;; ivy
      ;; auto-completion
      ;; better-defaults
      emacs-lisp
@@ -70,7 +70,10 @@ This function should only modify configuration layer settings."
      osx
      ;; (shell :variables shell-default-shell 'eshell)
      ;; markdown
-     neotree
+     ;; neotree
+     treemacs
+     (dash :variables
+           helm-dash-browser-func 'eww)
      (org :variables org-want-todo-bindings t)
      imenu-list
      (chinese :packages youdao-dictionary fcitx
@@ -78,7 +81,8 @@ This function should only modify configuration layer settings."
               chinese-enable-youdao-dict t)
      (shell :variables
             shell-default-height 30
-            shell-default-position 'bottom)
+            shell-default-position 'bottom
+            shell-default-term-shell "/usr/local/bin/zsh")
      jackthemico
      ;; spell-checking
      (syntax-checking :variables syntax-checking-enable-by-default nil)
@@ -228,7 +232,7 @@ It should only modify the values of Spacemacs settings."
    ;; to create your own spaceline theme. Value can be a symbol or list with\
    ;; additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(doom :separator wave :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -496,15 +500,20 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
-  (spaceline-toggle-minor-modes-off)
-  (spaceline-toggle-major-mode-off)
+  ;; (spaceline-toggle-minor-modes-off)
+  ;; (spaceline-toggle-major-mode-off)
   (spacemacs/toggle-golden-ratio-on)
+  (mac-toggle-tab-bar)
   (setq python-indent-offset 4
         python-sort-imports-on-save t
-        python-shell-interpreter "python3"
+        python-shell-interpreter "ipython3"
         importmagic-python-interpreter "python3"
         flycheck-python-pylint-executable "pylint"
         flycheck-python-flake8-executable "flake8"
+        doom-modeline-buffer-file-name-style 'truncate-upto-project
+        doom-modeline-persp-name nil
+        doom-modeline-major-mode-color-icon t
+        doom-modeline-python-executable nil
         )
   ;; (setq python-indent-offset 4
   ;;       python-sort-imports-on-save t
@@ -527,8 +536,10 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files nil)
  '(package-selected-packages
-   '(reveal-in-osx-finder rainbow-mode rainbow-identifiers osx-trash osx-dictionary launchctl color-identifiers-mode youdao-dictionary yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key wgrep volatile-highlights visual-regexp-steroids vi-tilde-fringe uuidgen use-package toc-org symon string-inflection sql-indent spaceline-all-the-icons smex smeargle shell-pop restart-emacs request rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file ob-restclient ob-http neotree nameless multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum live-py-mode link-hint ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide importmagic ibuffer-projectile hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish define-word cython-mode counsel-projectile company-statistics company-restclient company-quickhelp company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-complete auto-compile aggressive-indent ace-window ace-link)))
+   (quote
+    (doom-themes org-brain nameless evil-nerd-commenter eval-sexp-fu editorconfig doom-modeline company-statistics aggressive-indent ace-window ivy goto-chg company avy magit f helm yasnippet which-key hydra youdao-dictionary yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum volatile-highlights visual-regexp-steroids vi-tilde-fringe uuidgen use-package unfill toc-org symon string-inflection sql-indent spaceline-all-the-icons smeargle shrink-path shell-pop reveal-in-osx-finder restclient-helm restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file ob-restclient ob-http neotree mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum live-py-mode link-hint launchctl indent-guide importmagic ibuffer-projectile hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation highlight helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-dash helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-commit gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eshell-z eshell-prompt-extras esh-help elisp-slime-nav eldoc-eval dumb-jump dotenv-mode diminish dash-at-point cython-mode counsel-projectile company-restclient company-quickhelp company-anaconda column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-complete auto-compile ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

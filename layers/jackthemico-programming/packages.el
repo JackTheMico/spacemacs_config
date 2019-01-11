@@ -26,6 +26,8 @@
   ;; (setq python-shell-interpreter-args "--simple-prompt -i")
   )
 
+
+
 (defun jackthemico-programming/post-init-evil ()
   (progn
     (define-key evil-insert-state-map "\C-j" 'next-line)
@@ -34,8 +36,10 @@
     (define-key evil-insert-state-map "\C-l" 'forward-char)
     (define-key evil-insert-state-map "\C-f" 'forward-word)
     (define-key evil-insert-state-map "\C-b" 'backward-word)
-    (define-key evil-ex-completion-map "\C-a" 'move-beginning-of-line)
-    (define-key evil-ex-completion-map "\C-k" 'kill-line)
+    (define-key evil-insert-state-map "\C-a" 'beginning-of-line)
+    (define-key evil-insert-state-map "\C-e" 'end-of-line)
+    (define-key evil-normal-state-map "\C-a" 'move-beginning-of-line)
+    (define-key evil-normal-state-map "\C-e" 'end-of-line)
     )
   )
 
