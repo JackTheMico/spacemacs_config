@@ -1,6 +1,6 @@
 (setq jackthemico-programming-packages '(
                                          yasnippet
-                                         evil
+                                         ;; evil
                                          visual-regexp
                                          visual-regexp-steroids
                                          (python :location built-in)
@@ -23,25 +23,26 @@
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   ;; if you use pyton3, then you could comment the following line
   (setq python-shell-interpreter "python3")
+  (add-hook 'python-mode-hook #'(lambda () (turn-on-evil-surround-mode)))
   ;; (setq python-shell-interpreter-args "--simple-prompt -i")
   )
 
 
+;; (defun jackthemico-programming/post-init-evil ()
+  ;; (progn
+    ;; (define-key evil-insert-state-map "\C-j" 'next-line)
+    ;; (define-key evil-insert-state-map "\C-k" 'previous-line)
+    ;; (define-key evil-insert-state-map "\C-h" 'backward-char)
+    ;; (define-key evil-insert-state-map "\C-l" 'forward-char)
+    ;; (define-key evil-insert-state-map "\C-f" 'forward-word)
+    ;; (define-key evil-insert-state-map "\C-b" 'backward-word)
+    ;; (define-key evil-insert-state-map "\C-a" 'beginning-of-line)
+    ;; (define-key evil-insert-state-map "\C-e" 'end-of-line)
+    ;; (define-key evil-normal-state-map "\C-a" 'move-beginning-of-line)
+    ;; (define-key evil-normal-state-map "\C-e" 'end-of-line)
+  ;;   )
+  ;; )
 
-(defun jackthemico-programming/post-init-evil ()
-  (progn
-    (define-key evil-insert-state-map "\C-j" 'next-line)
-    (define-key evil-insert-state-map "\C-k" 'previous-line)
-    (define-key evil-insert-state-map "\C-h" 'backward-char)
-    (define-key evil-insert-state-map "\C-l" 'forward-char)
-    (define-key evil-insert-state-map "\C-f" 'forward-word)
-    (define-key evil-insert-state-map "\C-b" 'backward-word)
-    (define-key evil-insert-state-map "\C-a" 'beginning-of-line)
-    (define-key evil-insert-state-map "\C-e" 'end-of-line)
-    (define-key evil-normal-state-map "\C-a" 'move-beginning-of-line)
-    (define-key evil-normal-state-map "\C-e" 'end-of-line)
-    )
-  )
 
 (defun jackthemico-programming/init-visual-regexp ()
   (use-package visual-regexp

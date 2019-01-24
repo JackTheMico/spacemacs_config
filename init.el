@@ -44,11 +44,13 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     go
      helm
      ;; ivy
      ;; auto-completion
      ;; better-defaults
      emacs-lisp
+     spacemacs-evil
      (git :variables
           git-magit-status-fullscreen t
           magit-push-always-verify nil
@@ -71,7 +73,7 @@ This function should only modify configuration layer settings."
      ;; (shell :variables shell-default-shell 'eshell)
      ;; markdown
      ;; neotree
-     treemacs
+     (treemacs :variables treemacs-use-follow-mode t)
      (dash :variables
            helm-dash-browser-func 'eww)
      (org :variables org-want-todo-bindings t)
@@ -203,7 +205,7 @@ It should only modify the values of Spacemacs settings."
    ;; `recents' `bookmarks' `projects' `agenda' `todos'.
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
-   dotspacemacs-startup-lists '((recents . 5)
+   dotspacemacs-startup-lists '((recents . 10)
                                 (projects . 7))
 
    ;; True if the home buffer should respond to resize events. (default t)
@@ -384,7 +386,7 @@ It should only modify the values of Spacemacs settings."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers `relative
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -503,7 +505,7 @@ before packages are loaded."
   ;; (spaceline-toggle-minor-modes-off)
   ;; (spaceline-toggle-major-mode-off)
   (spacemacs/toggle-golden-ratio-on)
-  (mac-toggle-tab-bar)
+  ;; (mac-toggle-tab-bar)
   (setq python-indent-offset 4
         python-sort-imports-on-save t
         python-shell-interpreter "ipython3"
@@ -536,10 +538,9 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files nil)
  '(package-selected-packages
    (quote
-    (doom-themes org-brain nameless evil-nerd-commenter eval-sexp-fu editorconfig doom-modeline company-statistics aggressive-indent ace-window ivy goto-chg company avy magit f helm yasnippet which-key hydra youdao-dictionary yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum volatile-highlights visual-regexp-steroids vi-tilde-fringe uuidgen use-package unfill toc-org symon string-inflection sql-indent spaceline-all-the-icons smeargle shrink-path shell-pop reveal-in-osx-finder restclient-helm restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file ob-restclient ob-http neotree mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum live-py-mode link-hint launchctl indent-guide importmagic ibuffer-projectile hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation highlight helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-dash helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-commit gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eshell-z eshell-prompt-extras esh-help elisp-slime-nav eldoc-eval dumb-jump dotenv-mode diminish dash-at-point cython-mode counsel-projectile company-restclient company-quickhelp company-anaconda column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-complete auto-compile ace-link ace-jump-helm-line))))
+    (treemacs-projectile treemacs-evil treemacs ht pfuture youdao-dictionary yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key volatile-highlights visual-regexp-steroids vi-tilde-fringe uuidgen use-package toc-org symon string-inflection sql-indent spaceline-all-the-icons smeargle shell-pop reveal-in-osx-finder restclient-helm restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file ob-restclient ob-http neotree nameless multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum live-py-mode link-hint launchctl indent-guide importmagic ibuffer-projectile hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-dash helm-company helm-c-yasnippet helm-ag google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish dash-at-point cython-mode counsel-projectile company-statistics company-restclient company-quickhelp company-go company-anaconda column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-complete auto-compile aggressive-indent ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
