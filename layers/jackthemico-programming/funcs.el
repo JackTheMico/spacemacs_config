@@ -15,7 +15,7 @@
   (interactive)
   (progn
     (setq python-indent-offset 4
-          python-sort-imports-on-save t
+          python-sort-imports-on-save nil
           python-shell-interpreter "ipython2"
           importmagic-python-interpreter "python2"
           flycheck-python-pylint-executable "pylint"
@@ -30,7 +30,7 @@
   (interactive)
   (progn
     (setq python-indent-offset 4
-          python-sort-imports-on-save t
+          python-sort-imports-on-save nil
           python-shell-interpreter "ipython3"
           importmagic-python-interpreter "python3"
           flycheck-python-pylint-executable "pylint"
