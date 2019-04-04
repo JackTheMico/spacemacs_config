@@ -520,6 +520,7 @@ before packages are loaded."
         doom-modeline-major-mode-color-icon t
         doom-modeline-python-executable nil
         nyan-minimum-window-width 110
+        parrot-num-rotations 10
         )
   ;; (setq python-indent-offset 4
   ;;       python-sort-imports-on-save t
