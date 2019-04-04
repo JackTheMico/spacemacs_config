@@ -19,11 +19,27 @@
                                                             org-mode-hook))
     ))
 
+
+(defun change-parrot-type (list dex)
+  (progn
+    (if (= dex 6)
+        (setq index 0)
+      )
+    (parrot-set-parrot-type (aref list dex))
+    (incf index)
+    )
+  )
+
 (defun jackthemico-programming/post-init-python ()
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   ;; if you use pyton3, then you could comment the following line
   (setq python-shell-interpreter "python3")
+  (setq types ["default" "confused" "emacs" "nyan" "rotating" "science" "thumbsup"])
+  (setq index 0)
   (add-hook 'python-mode-hook #'(lambda () (turn-on-evil-surround-mode)))
+  (add-hook 'evil-normal-state-exit-hook #'(lambda () (change-parrot-type types index)))
+  (add-hook 'evil-normal-state-entry-hook #'(lambda () (change-parrot-type types index)))
+  (add-hook 'magit-mode-hook #'(lambda () (change-parrot-type types index)))
   ;; (setq python-shell-interpreter-args "--simple-prompt -i")
   )
 

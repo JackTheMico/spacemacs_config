@@ -100,7 +100,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(parrot)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -508,6 +508,7 @@ before packages are loaded."
   ;; (spaceline-toggle-major-mode-off)
   (spacemacs/toggle-golden-ratio-on)
   ;; (mac-toggle-tab-bar)
+  (parrot-mode)
   (setq python-indent-offset 4
         python-sort-imports-on-save nil
         python-shell-interpreter "ipython3"

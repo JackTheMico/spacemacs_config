@@ -21,3 +21,6 @@
 (define-key evil-insert-state-map "\C-e" 'end-of-line)
 (define-key evil-normal-state-map "\C-a" 'move-beginning-of-line)
 (define-key evil-normal-state-map "\C-e" 'end-of-line)
+;; parrot for evil users
+(define-key evil-normal-state-map (kbd "[r") 'parrot-rotate-prev-word-at-point)
+(define-key evil-normal-state-map (kbd "]r") 'parrot-rotate-next-word-at-point)
