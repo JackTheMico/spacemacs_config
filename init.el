@@ -55,6 +55,11 @@ This function should only modify configuration layer settings."
      spacemacs-evil
      lsp
      (java :variables java-backend 'lsp)
+     (scala :variables
+            scala-auto-start-ensime t
+            scala-use-unicode-arrows t
+            scala-enable-eldoc t
+            )
      dap
      (git :variables
           git-magit-status-fullscreen t
@@ -484,6 +489,8 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+  (add-to-list 'configuration-layer-elpa-archives '("melpa-stable" . "stable.melpa.org/packages/"))
+  (add-to-list 'package-pinned-packages '(ensime . "melpa-stable"))
   (setq configuration-layer-elpa-archives
         '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
           ("org-cn"   . "http://elpa.emacs-china.org/org/")
