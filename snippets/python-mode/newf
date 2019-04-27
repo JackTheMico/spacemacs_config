@@ -12,13 +12,13 @@
 
     Description:      $2
 
-    Author:           liangwen.deng@kankanai.com.cn
+    Author:           dlwxxxdlw@gmail.com
 
     Date:             ${3:$(format-time-string "%Y-%m-%d-%H:%M:%S")}
 
     Version:          v1.0
 
-    Lastmodified:     ${4:$3} by Jack Deng
+    Lastmodified:     ${4:$3} by Joke Funny
 
 -------------------------------------------------
 """
