@@ -54,12 +54,6 @@ This function should only modify configuration layer settings."
      emacs-lisp
      spacemacs-evil
      lsp
-     (java :variables java-backend 'lsp)
-     (scala :variables
-            scala-auto-start-ensime t
-            scala-use-unicode-arrows t
-            scala-enable-eldoc t
-            )
      dap
      (git :variables
           git-magit-status-fullscreen t
@@ -251,7 +245,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Variable Medium"
+   dotspacemacs-default-font '("hack"
                                :size 15
                                :weight normal
                                :width normal
