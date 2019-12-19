@@ -54,12 +54,12 @@ This function should only modify configuration layer settings."
      emacs-lisp
      spacemacs-evil
      lsp
-     (java :variables java-backend 'lsp)
-     (scala :variables
-            scala-auto-start-ensime t
-            scala-use-unicode-arrows t
-            scala-enable-eldoc t
-            )
+     ;; (java :variables java-backend 'lsp)
+     ;; (scala :variables
+     ;;        scala-auto-start-ensime t
+     ;;        scala-use-unicode-arrows t
+     ;;        scala-enable-eldoc t
+     ;;        )
      dap
      (git :variables
           git-magit-status-fullscreen t
@@ -85,6 +85,7 @@ This function should only modify configuration layer settings."
      ;; neotree
      (treemacs :variables treemacs-use-follow-mode t)
      (dash :variables
+           helm-dash-docset-newpath "/mnt/d/zealdocs"
            helm-dash-browser-func 'eww)
      (org :variables org-want-todo-bindings t)
      imenu-list
@@ -94,7 +95,7 @@ This function should only modify configuration layer settings."
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom
-            shell-default-term-shell "/usr/local/bin/zsh")
+            shell-default-term-shell "/usr/sbin/zsh")
      jackthemico
      ;; spell-checking
      (syntax-checking :variables syntax-checking-enable-by-default nil)
@@ -162,7 +163,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    ;; (default 5)
-   dotspacemacs-elpa-timeout 5
+   dotspacemacs-elpa-timeout 300
 
    ;; Set `gc-cons-threshold' and `gc-cons-percentage' when startup finishes.
    ;; This is an advanced option and should not be changed unless you suspect
@@ -252,8 +253,10 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+   dotspacemacs-default-font '(
+                               ;; "Source Code Pro"
+                               "DejaVu Sans Mono for Powerline Bold"
+                               :size 15
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -514,11 +517,15 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
+  (add-to-list 'spacemacs--python-pyenv-modes 'python-mode)
+  ;; (load-file "/home/dlwxxxdlw/.emacs.d/site-lisp/emacs-application-framework/eaf.el")
   ;; (spaceline-toggle-minor-modes-off)
   ;; (spaceline-toggle-major-mode-off)
-  (spacemacs/toggle-golden-ratio-on)
+  ;; (spacemacs/toggle-golden-ratio-on)
   ;; (mac-toggle-tab-bar)
   (parrot-mode)
+  (setq zeal-at-point-zeal-version "0.6.1")
+  (setq git-enable-magit-svn-plugin t)
   (setq python-indent-offset 4
         python-sort-imports-on-save nil
         python-shell-interpreter "ipython3"
@@ -556,7 +563,9 @@ This function is called at the very end of Spacemacs initialization."
  '(org-agenda-files nil)
  '(package-selected-packages
    (quote
-    (lsp-java nginx-mode yaml-mode web-mode sql-indent smartparens org-plus-contrib youdao-dictionary yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key web-beautify volatile-highlights visual-regexp-steroids vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-evil toc-org tagedit symon string-inflection spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode reveal-in-osx-finder restclient-helm restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file ob-restclient ob-http nameless multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum live-py-mode link-hint launchctl indent-guide importmagic impatient-mode ibuffer-projectile hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish dash-at-point cython-mode counsel-projectile company-web company-statistics company-restclient company-quickhelp company-go company-anaconda column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-complete auto-compile aggressive-indent ace-link ace-jump-helm-line))))
+    (lsp-java nginx-mode yaml-mode web-mode sql-indent smartparens org-plus-contrib youdao-dictionary yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key web-beautify volatile-highlights visual-regexp-steroids vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-evil toc-org tagedit symon string-inflection spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode reveal-in-osx-finder restclient-helm restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file ob-restclient ob-http nameless multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum live-py-mode link-hint launchctl indent-guide importmagic impatient-mode ibuffer-projectile hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish dash-at-point cython-mode counsel-projectile company-web company-statistics company-restclient company-quickhelp company-go company-anaconda column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-complete auto-compile aggressive-indent ace-link ace-jump-helm-line)))
+ '(python-shell-interpreter "/home/dlwxxxdlw/.pyenv/shims/python")
+ '(python-shell-interpreter-args "-i"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

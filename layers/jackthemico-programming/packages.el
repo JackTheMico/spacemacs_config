@@ -4,6 +4,7 @@
                                          visual-regexp
                                          visual-regexp-steroids
                                          (python :location built-in)
+                                         dap-mode
                                          ))
 
 (defun jackthemico-programming/post-init-yasnippet ()
@@ -30,19 +31,58 @@
     )
   )
 
+(defun jackthemico-programming/pre-init-dap-mode ()
+  (add-to-list 'spacemacs--dap-supported-modes 'python-mode))
+
+(defun make-dap-breakpoint-works ()
+  (require 'dap-mode)
+  (progn
+    (spacemacs/declare-prefix-for-mode 'python-mode "mdp" "breakpoints")
+    (spacemacs/set-leader-keys-for-major-mode 'python-mode
+      ;; breakpoints
+      "dpb" #'dap-breakpoint-toggle
+      "dpc" #'dap-breakpoint-condition
+      "dpl" #'dap-breakpoint-log-message
+      "dph" #'dap-breakpoint-hit-condition
+      "dpa" #'dap-breakpoint-add
+      "dpd" #'dap-breakpoint-delete
+      "dpD" #'dap-breakpoint-delete-all
+      )
+    )
+  )
+
 (defun jackthemico-programming/post-init-python ()
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   ;; if you use pyton3, then you could comment the following line
-  (setq python-shell-interpreter "python3")
+  (setq python-shell-interpreter "ipython")
   (setq types ["default" "confused" "emacs" "nyan" "rotating" "science" "thumbsup"])
   (setq index 0)
+  (add-hook 'python-mode-hook #'(lambda () (make-dap-breakpoint-works)))
   (add-hook 'python-mode-hook #'(lambda () (turn-on-evil-surround-mode)))
   (add-hook 'evil-normal-state-exit-hook #'(lambda () (change-parrot-type types index)))
   (add-hook 'evil-normal-state-entry-hook #'(lambda () (change-parrot-type types index)))
   (add-hook 'magit-mode-hook #'(lambda () (change-parrot-type types index)))
-  ;; (setq python-shell-interpreter-args "--simple-prompt -i")
+  (setq python-shell-interpreter-args "--simple-prompt -i")
   )
 
+(defun jackthemico-programming/post-init-dap-mode ()
+  (progn
+    (require 'dap-mode)
+    (add-hook 'dap-stopped-hook (lambda (arg) (call-interactively #'dap-ui-sessions)))
+    (add-hook 'dap-stopped-hook (lambda (arg) (call-interactively #'dap-ui-locals)))
+    (add-hook 'dap-stopped-hook
+          (lambda (arg) (call-interactively #'dap-hydra)))
+    (dap-register-debug-template "Python apimonitor"
+                                 (list :type "python"
+                                       :args "runserver 0.0.0.0:8001 --noreload"
+                                       :cwd nil
+                                       :target-module (expand-file-name "/mnt/d/code/python/ApiMonitor/adminew/manage.py")
+                                       ;; :module "django"
+                                       :program nil
+                                       :request "launch"
+                                       :name "Python apimonitor"))
+    )
+  )
 
 ;; (defun jackthemico-programming/post-init-evil ()
   ;; (progn

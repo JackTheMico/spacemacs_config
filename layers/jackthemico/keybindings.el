@@ -2,7 +2,7 @@
 (define-key global-map (kbd "C-c s") 'youdao-dictionary-search)
 (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+)
 (spacemacs/set-leader-keys "oi" 'youdao-dictionary-search-from-input)
-(spacemacs/set-leader-keys-for-major-mode 'python-mode "dp" 'jackthemico/add-pdb)
+(spacemacs/set-leader-keys-for-major-mode 'python-mode "dP" 'jackthemico/add-pdb)
 (define-key evil-normal-state-map (kbd "s") 'avy-goto-char)
 (define-key evil-normal-state-map (kbd "gl") 'avy-goto-line)
 (define-key evil-visual-state-map (kbd ",/") 'evilnc-comment-or-uncomment-lines)
