@@ -82,9 +82,9 @@ This function should only modify configuration layer settings."
      restclient
      (colors :variables
              colors-enable-nyan-cat-progress-bar t)
-     osx
+     ;; osx
      ;; (shell :variables shell-default-shell 'eshell)
-     ;; markdown
+     markdown
      ;; neotree
      (treemacs :variables treemacs-use-follow-mode t)
      (dash :variables
