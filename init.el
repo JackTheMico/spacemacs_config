@@ -61,6 +61,9 @@ This function should only modify configuration layer settings."
      ;;        scala-enable-eldoc t
      ;;        )
      dap
+     gnus
+     mu4e
+     w3m
      (git :variables
           git-magit-status-fullscreen t
           magit-push-always-verify nil
@@ -515,6 +518,8 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  ;; (setq-default dotspacemacs-configuration-layers
+  ;;               '(w3m))
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (add-to-list 'spacemacs--python-pyenv-modes 'python-mode)
@@ -524,6 +529,19 @@ before packages are loaded."
   ;; (spacemacs/toggle-golden-ratio-on)
   ;; (mac-toggle-tab-bar)
   (parrot-mode)
+  (setq socks-server '("Default server" "127.0.0.1" 1081 5))
+  (setq w3m-home-page "https://www.google.com")
+  ;; W3M Home Page
+  (setq w3m-default-display-inline-images t)
+  (setq w3m-default-toggle-inline-images t)
+  ;; W3M default display images
+  (setq w3m-command-arguments '("-cookie" "-F"))
+  (setq w3m-use-cookies t)
+  ;; W3M use cookies
+  (setq browse-url-browser-function 'w3m-browse-url)
+  ;; Browse url function use w3m
+  (setq w3m-view-this-url-new-session-in-background t)
+  ;; W3M view url new session in background
   (setq zeal-at-point-zeal-version "0.6.1")
   (setq git-enable-magit-svn-plugin t)
   (setq python-indent-offset 4
@@ -539,6 +557,61 @@ before packages are loaded."
         nyan-minimum-window-width 110
         parrot-num-rotations 10
         )
+  (v/w3m-open-url "http://www.emacs-china.org")
+    ;;; Set up some common mu4e variables
+  (setq mu4e-maildir "~/mail"
+        mu4e-drafts-folder "/Drafts"
+        mu4e-sent-folder   "/Sent"
+        ;; mu4e-refile-folder "/Archive"
+        mu4e-trash-folder "/Trash"
+        mu4e-get-mail-command "mbsync -a"
+        mu4e-update-interval nil
+        mu4e-compose-signature-auto-include nil
+        mu4e-view-show-images t
+        mu4e-view-show-addresses t)
+  ;;; Mail directory shortcuts
+  (setq mu4e-maildir-shortcuts
+        '(("/INBOX" . ?i)
+          ("/Sent Messages" . ?s)
+          ("/Junk" . ?j)
+          ("/Deleted Messages" . ?d)
+          ))
+
+  (setq mu4e-get-mail-command "offlineimap")
+
+  ;; something about ourselves
+  (setq user-mail-address "denglw@si-tech.com.cn"
+        user-full-name  "邓量文"
+        mu4e-compose-signature
+        (concat
+         "MIOS-邓量文\n"
+         "Email: denglw@si-tech.com.cn\n"
+         "祝工作生活愉快！"
+         "\n")
+        mu4e-compose-signature-auto-include t
+        )
+
+
+  ;;send mail
+  (require 'smtpmail)
+  (setq message-send-mail-function 'smtpmail-send-it
+        ;; smtpmail-stream-type 'starttls
+        smtpmail-default-smtp-server "smtp.si-tech.com.cn"
+        smtpmail-smtp-server "smtp.si-tech.com.cn"
+        ;; smtpmail-smtp-service 25
+        )
+
+  (setq mu4e-view-show-images t)
+
+  ;; save attachment to my desktop (this can also be a function)
+  (setq mu4e-attachment-dir "/mnt/d/Jack Deng/Documents/sitech-doc")
+
+  ;; sync email from imap server
+  (setq mu4e-get-mail-command "offlineimap"
+        mu4e-update-interval 90)
+  ;; notifcation
+  (setq mu4e-enable-notifications t)
+  (mu4e-alert-enable-mode-line-display)
   ;; (setq python-indent-offset 4
   ;;       python-sort-imports-on-save t
   ;;       python-shell-interpreter "python2"

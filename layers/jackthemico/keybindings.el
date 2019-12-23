@@ -2,6 +2,7 @@
 (define-key global-map (kbd "C-c s") 'youdao-dictionary-search)
 (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+)
 (spacemacs/set-leader-keys "oi" 'youdao-dictionary-search-from-input)
+(spacemacs/set-leader-keys "op" 'jackthemico/toggle-env-http-proxy)
 (spacemacs/set-leader-keys-for-major-mode 'python-mode "dP" 'jackthemico/add-pdb)
 (define-key evil-normal-state-map (kbd "s") 'avy-goto-char)
 (define-key evil-normal-state-map (kbd "gl") 'avy-goto-line)
@@ -24,3 +25,10 @@
 ;; parrot for evil users
 (define-key evil-normal-state-map (kbd "[r") 'parrot-rotate-prev-word-at-point)
 (define-key evil-normal-state-map (kbd "]r") 'parrot-rotate-next-word-at-point)
+
+(spacemacs|add-toggle toggle-shadowsocks-proxy-mode
+  :status shadowsocks-proxy-mode
+  :on (global-shadowsocks-proxy-mode)
+  :off (global-shadowsocks-proxy-mode -1)
+  :documentation "Toggle shadowsocks proxy mode."
+  :evil-leader "os")

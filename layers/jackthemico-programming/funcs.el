@@ -57,3 +57,26 @@
       )
     )
   )
+
+(defun jackthemico/toggle-env-http-proxy ()
+  "set/unset the environment variable http_proxy which w3m uses"
+  (interactive)
+  (let ((proxy "http://127.0.0.1:8118"))
+    (if (string= (getenv "http_proxy") proxy)
+        ;; clear the proxy
+        (progn
+          (setenv "HTTP_PROXY" "")
+          (message "env http_proxy is empty now"))
+      ;; set the proxy
+      (setenv "HTTP_PROXY" proxy)
+      (message "env http_proxy is %s now" proxy)))
+  ;; (let ((proxy "https://127.0.0.1:8118"))
+  ;;   (if (string= (getenv "HTTPS_PROXY") proxy)
+  ;;       ;; clear the proxy
+  ;;       (progn
+  ;;         (setenv "HTTPS_PROXY" "")
+  ;;         (message "env https_proxy is empty now"))
+  ;;     ;; set the proxy
+  ;;     (setenv "HTTPS_PROXY" proxy)
+  ;;     (message "env https_proxy is %s now" proxy)))
+  )
